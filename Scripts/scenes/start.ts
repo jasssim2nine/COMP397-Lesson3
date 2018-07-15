@@ -10,6 +10,7 @@ module scenes {
         //Constructor
         constructor(assetManager:createjs.LoadQueue){
             super(assetManager)
+            this.Start();
         }
 
 
@@ -28,7 +29,9 @@ module scenes {
 
         }
 
-        public Update():void{
+        public Update(): number{
+            
+            return objects.Game.currentScene;
 
         }
         public Main():void{

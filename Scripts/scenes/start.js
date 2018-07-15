@@ -15,7 +15,9 @@ var scenes;
         // Public Properties
         //Constructor
         function StartScene(assetManager) {
-            return _super.call(this, assetManager) || this;
+            var _this = _super.call(this, assetManager) || this;
+            _this.Start();
+            return _this;
         }
         //Private Methods
         StartScene.prototype._startButtonClick = function () {
@@ -28,6 +30,7 @@ var scenes;
             this._startButton = new objects.Button(this.assetManager, "startButton", 320, 300);
         };
         StartScene.prototype.Update = function () {
+            return objects.Game.currentScene;
         };
         StartScene.prototype.Main = function () {
             this.addChild(this._welcomeLabel); //add welcome label to the scene

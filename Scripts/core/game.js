@@ -10,7 +10,8 @@
     var assetManifest;
     var currentScene;
     assetManifest = [
-        { id: "clickMeButton", src: "./Assets/images/click_here_button.png" }
+        { id: "clickMeButton", src: "./Assets/images/click_here_button.png" },
+        { id: "startButton", src: "./Assets/images/startButton.png" }
     ];
     //preloads assets
     function Init() {
@@ -32,14 +33,18 @@
     function Update() {
         //if the scene that is playing returns another scene 
         //then call main again
+        if (currentScene.Update() != objects.Game.currentScene) {
+            console.log(objects.Game.currentScene);
+            Main();
+        }
         stage.update();
     }
     function Main() {
         switch (objects.Game.currentScene) {
             case config.Scene.START:
-                //remove all current objects
-                //instantiate a new scene object
-                //add the new scene object to stage
+                stage.removeAllChildren();
+                currentScene = new scenes.StartScene(assetManager);
+                stage.addChild(currentScene);
                 break;
             case config.Scene.PLAY:
                 //game play
