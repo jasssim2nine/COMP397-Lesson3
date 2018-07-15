@@ -13,6 +13,7 @@
     let clickMeButton: objects.Button;
     let assetManager : createjs.LoadQueue;
     let assetManifest: any[];
+    let currentScene : number;
 
     assetManifest = [
         {id: "clickMeButton", src:"./Assets/images/click_here_button.png"}
@@ -34,38 +35,38 @@
         stage.enableMouseOver(20); // turn this on for buttons
         createjs.Ticker.framerate = 60; //60 FPS
         createjs.Ticker.on("tick", Update);
+        objects.Game.currentScene = config.Scene.START;
         Main();
         
     }
     
     function Update():void
     {
+        //if the scene that is playing returns another scene 
+        //then call main again
        
         stage.update();
     }
     
 
 
-    function clickMeButtonClick():void{
-        helloLabel.text = "Clicked!";
-        helloLabel.regX = helloLabel.getMeasuredWidth() * 0.5;
-        helloLabel.regY = helloLabel.getMeasuredHeight() * 0.5;
-    }
+   
 
     
     function Main():void{
-        console.log("Game Started...");
-
-        helloLabel = new objects.Label("Hello, World!","40px", "consolas","#000000",320,240, true);    
-        stage.addChild(helloLabel);
-
-        clickMeButton = new objects.Button(assetManager,"clickMeButton",320,340);
-        
-        
-        stage.addChild(clickMeButton);
-
-       
-        clickMeButton.on("click", clickMeButtonClick);
+        switch(objects.Game.currentScene){
+            case config.Scene.START:
+            //remove all current objects
+            //instantiate a new scene object
+            //add the new scene object to stage
+            break;
+            case config.Scene.PLAY:
+            //game play
+            break;
+            case config.Scene.OVER:
+            //game over scene
+            break;
+        }
 
 
     }
